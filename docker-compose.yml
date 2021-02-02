@@ -10,7 +10,7 @@ services:
         volumes:
             - ./accservermanager:/accservermanager
             - ./server:/server
-            - ./data:/data
+            - accservermanager-data:/data
         environment:
             - ALLOWED_HOSTS=["*"]
             - SECRET_KEY=thisisasekrit
@@ -19,3 +19,6 @@ services:
             - 9231:9231/udp
             - 8000:8000
         command: python3 manage.py runserver --insecure 0.0.0.0:8000
+
+volumes:
+    accservermanager-data:
