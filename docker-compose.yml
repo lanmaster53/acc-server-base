@@ -1,0 +1,21 @@
+# https://hub.docker.com/r/gotzl/accservermanager
+# https://github.com/gotzl/accservermanager
+
+version: '2'
+
+services:
+
+    acc:
+        image: accservermanager
+        volumes:
+            - ./accservermanager:/accservermanager
+            - ./server:/server
+            - ./data:/data
+        environment:
+            - ALLOWED_HOSTS=["*"]
+            - SECRET_KEY=thisisasekrit
+        ports:
+            - 9232:9232/tcp
+            - 9231:9231/udp
+            - 8000:8000
+        command: python3 manage.py runserver --insecure 0.0.0.0:8000
